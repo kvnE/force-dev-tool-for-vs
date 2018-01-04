@@ -1,0 +1,61 @@
+{
+    "name": "force-dev-tool-for-vs",
+    "displayName": "force-dev-tool for VS",
+    "description": "Extension for force-dev-tool",
+    "version": "0.0.1",
+    "publisher": "kev-force",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sayHello",
+        "onCommand:extension.check",
+        "onCommand:extension.login",
+        "onCommand:extension.fetch",
+        "onCommand:extension.retrieve",
+        "onCommand:extension.packageAll"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "force-dev-tool: Hello"
+            },
+            {
+                "command": "extension.check",
+                "title": "force-dev-tool: Check"
+            },
+            {
+                "command": "extension.login",
+                "title": "force-dev-tool: Login"
+            },
+            {
+                "command": "extension.fetch",
+                "title": "force-dev-tool: Fetch"
+            },
+            {
+                "command": "extension.retrieve",
+                "title": "force-dev-tool: Retrieve"
+            },
+            {
+                "command": "extension.packageAll",
+                "title": "force-dev-tool: Package All"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.6.1",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
