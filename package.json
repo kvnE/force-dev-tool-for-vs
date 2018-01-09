@@ -16,15 +16,15 @@
         "onCommand:extension.login",
         "onCommand:extension.fetch",
         "onCommand:extension.retrieve",
+        "onCommand:extension.destructive",
+        "onCommand:extension.createDiffChangeset",
+        "onCommand:extension.changeset",
+        "onCommand:extension.deploy",
         "onCommand:extension.packageAll"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "force-dev-tool: Hello"
-            },
             {
                 "command": "extension.check",
                 "title": "force-dev-tool: Check"
@@ -42,10 +42,49 @@
                 "title": "force-dev-tool: Retrieve"
             },
             {
+                "command": "extension.test",
+                "title": "force-dev-tool: Test"
+            },
+            {
+                "command": "extension.createDiffChangeset",
+                "title": "force-dev-tool: Create diff Changeset"
+            },
+            {
+                "command": "extension.destructive",
+                "title": "force-dev-tool: Create destructive Changeset"
+            },
+            {
+                "command": "extension.changeset",
+                "title": "force-dev-tool: Create Changeset"
+            },
+            {
+                "command": "extension.deploy",
+                "title": "force-dev-tool: Deploy"
+            },
+            {
                 "command": "extension.packageAll",
                 "title": "force-dev-tool: Package All"
             }
-        ]
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.deploy",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.changeset",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.destructive",
+                    "group": "navigation"
+                }
+            ]
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
@@ -57,5 +96,9 @@
         "eslint": "^4.6.1",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "spawn-command": "0.0.2-1",
+        "tree-kill": "^1.2.0"
     }
 }
