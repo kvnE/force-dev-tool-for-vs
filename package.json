@@ -2,7 +2,7 @@
     "name": "force-dev-tool-for-vs",
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "publisher": "kev-force",
     "engines": {
         "vscode": "^1.18.0"
@@ -15,14 +15,20 @@
         "onCommand:extension.changeDefaultRemote",
         "onCommand:extension.checkUncommitted",
         "onCommand:extension.checkClass",
+        "onCommand:extension.checkClassSpecific",
         "onCommand:extension.login",
         "onCommand:extension.loginSpecific",
         "onCommand:extension.fetch",
+        "onCommand:extension.fetchSpecific",
         "onCommand:extension.retrieve",
+        "onCommand:extension.retrieveSpecific",
+        "onCommand:extension.test",
+        "onCommand:extension.testSpecific",        
         "onCommand:extension.destructive",
         "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
         "onCommand:extension.deploy",
+        "onCommand:extension.deploySpecific",
         "onCommand:extension.exeSOQL",
         "onCommand:extension.exeAnonymous",
         "onCommand:extension.packageAll"
@@ -37,6 +43,10 @@
             {
                 "command": "extension.checkClass",
                 "title": "force-dev-tool: Check Class"
+            },
+            {
+                "command": "extension.checkClassSpecific",
+                "title": "force-dev-tool: Check Class again specific Org"
             },
             {
                 "command": "extension.changeDefaultRemote",
@@ -59,12 +69,24 @@
                 "title": "force-dev-tool: Fetch"
             },
             {
+                "command": "extension.fetchSpecific",
+                "title": "force-dev-tool: Fetch from specific Org"
+            },
+            {
                 "command": "extension.retrieve",
                 "title": "force-dev-tool: Retrieve"
             },
             {
+                "command": "extension.retrieveSpecific",
+                "title": "force-dev-tool: Retrieve from specific Org"
+            },
+            {
                 "command": "extension.test",
                 "title": "force-dev-tool: Test"
+            },
+            {
+                "command": "extension.testSpecific",
+                "title": "force-dev-tool: Test specific Org"
             },
             {
                 "command": "extension.createDiffChangeset",
@@ -81,6 +103,10 @@
             {  
                 "command": "extension.deploy",
                 "title": "force-dev-tool: Deploy"
+            },
+            {  
+                "command": "extension.deploySpecific",
+                "title": "force-dev-tool: Deploy to specific Org"
             },
             {
                 "command": "extension.packageAll",
