@@ -2,7 +2,7 @@
     "name": "force-dev-tool-for-vs",
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
-    "version": "0.1.1",
+    "version": "0.1.3",
     "publisher": "kev-force",
     "engines": {
         "vscode": "^1.18.0"
@@ -12,15 +12,25 @@
     ],
     "activationEvents": [
         "onCommand:extension.addDefaultRemote",
+        "onCommand:extension.changeDefaultRemote",
         "onCommand:extension.checkUncommitted",
         "onCommand:extension.checkClass",
+        "onCommand:extension.checkClassSpecific",
         "onCommand:extension.login",
+        "onCommand:extension.loginSpecific",
         "onCommand:extension.fetch",
+        "onCommand:extension.fetchSpecific",
         "onCommand:extension.retrieve",
+        "onCommand:extension.retrieveSpecific",
+        "onCommand:extension.test",
+        "onCommand:extension.testSpecific",
+        "onCommand:extension.testClass",
+        "onCommand:extension.testClassSpecific",
         "onCommand:extension.destructive",
         "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
         "onCommand:extension.deploy",
+        "onCommand:extension.deploySpecific",
         "onCommand:extension.exeSOQL",
         "onCommand:extension.exeAnonymous",
         "onCommand:extension.packageAll"
@@ -30,74 +40,95 @@
         "commands": [
             {
                 "command": "extension.checkUncommitted",
-                "title": "Check uncommitted changes",
-                "description": "Checks all uncommitted changes agains your Org.",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Check uncommitted changes"
             },
             {
                 "command": "extension.checkClass",
-                "title": "Check Class",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Check Class"
+            },
+            {
+                "command": "extension.checkClassSpecific",
+                "title": "force-dev-tool: Check Class again specific Org"
+            },
+            {
+                "command": "extension.changeDefaultRemote",
+                "title": "force-dev-tool: Change default Remote"
             },
             {
                 "command": "extension.login",
-                "title": "Login",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Login"
+            },
+            {
+                "command": "extension.loginSpecific",
+                "title": "force-dev-tool: Login to specific Org"
             },
             {
                 "command": "extension.addDefaultRemote",
-                "title": "Add default Remote",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Add default Remote"
             },
             {
                 "command": "extension.fetch",
-                "title": "Fetch",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Fetch"
+            },
+            {
+                "command": "extension.fetchSpecific",
+                "title": "force-dev-tool: Fetch from specific Org"
             },
             {
                 "command": "extension.retrieve",
-                "title": "Retrieve",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Retrieve"
+            },
+            {
+                "command": "extension.retrieveSpecific",
+                "title": "force-dev-tool: Retrieve from specific Org"
             },
             {
                 "command": "extension.test",
-                "title": "Test",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Test"
+            },
+            {
+                "command": "extension.testSpecific",
+                "title": "force-dev-tool: Test specific Org"
+            },
+            {
+                "command": "extension.testClass",
+                "title": "force-dev-tool: Execute Test Class"
+            },
+            {
+                "command": "extension.testClassSpecific",
+                "title": "force-dev-tool: Execute Test Class in specific Org"
             },
             {
                 "command": "extension.createDiffChangeset",
-                "title": "Create diff Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create diff Changeset"
             },
             {
                 "command": "extension.destructive",
-                "title": "Create destructive Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create destructive Changeset"
             },
             {
                 "command": "extension.changeset",
-                "title": "Create Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create Changeset"
             },
             {
                 "command": "extension.deploy",
-                "title": "Deploy",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Deploy"
+            },
+            {
+                "command": "extension.deploySpecific",
+                "title": "force-dev-tool: Deploy to specific Org"
             },
             {
                 "command": "extension.packageAll",
-                "title": "Package All",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Package All"
             },
             {
                 "command": "extension.exeSOQL",
-                "title": "Execute SOQL",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Execute SOQL"
             },
             {
                 "command": "extension.exeAnonymous",
-                "title": "Execute anonymous APEX",
-                "category": "force-dev-tool",
+                "title": "force-dev-tool: Execute anonymous APEX",
                 "context": {
                     "where": "editor/context",
                     "when": "resourceLangId == apex"
@@ -106,14 +137,15 @@
         ],
         "menus": {
             "commandPalette": [
-            {
-                "when": "resourceLangId == apex && editorHasSelection",
-                "command": "extension.exeSOQL"
-            },
-            {
-                "when": "resourceLangId == apex && editorHasSelection",
-                "command": "extension.exeAnonymous"
-            }],
+                {
+                    "when": "resourceLangId == apex && editorHasSelection",
+                    "command": "extension.exeSOQL"
+                },
+                {
+                    "when": "resourceLangId == apex && editorHasSelection",
+                    "command": "extension.exeAnonymous"
+                }
+            ],
             "explorer/context": [
                 {
                     "when": "resourceLangId == apex",
@@ -133,6 +165,11 @@
                 {
                     "when": "resourceLangId == apex",
                     "command": "extension.destructive",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.testClass",
                     "group": "navigation"
                 }
             ],
@@ -155,13 +192,14 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.6.1",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "typescript": "^2.6.2",
+        "vscode": "^1.1.10",
+        "eslint": "^4.15.0",
+        "@types/node": "^9.3.0",
+        "@types/mocha": "^2.2.46"
     },
     "dependencies": {
+        "force-dev-tool": "^1.1.0",
         "spawn-command": "0.0.2-1",
         "tree-kill": "^1.2.0"
     }

@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+var fs = require('fs');
 const vscode = require('vscode');
 var spawnCMD = require('spawn-command');
 var treeKill = require('tree-kill');
@@ -64,12 +65,34 @@ function execShellCMD(cwd, cmd) {
         exec(cmd, cwd);
     }
 }
+function getRemotes(){
+    var configFile = vscode.workspace.rootPath + '/config/.orgs.json';
+    if (fs.existsSync(configFile)) {
+        var file = fs.readFileSync(configFile);
+        var data = JSON.parse(file.toString());
+        var options = [];
+        for (var key in data.remotes) {
+            options.push(key);
+        };
+        return options;
+    }else
+    {
+        console.log('File does not exists.');
+        return null;
+    }
+}
 function activate(context) {
     console.log('Congratulations, your extension "force-dev-tool-for-vs" is now active!');
     commandOutput = vscode.window.createOutputChannel('force-dev-tool');
     
     context.subscriptions.push(vscode.commands.registerCommand('extension.login', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool login");
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.loginSpecific', function () {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool login " +val);
+        });
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.addDefaultRemote', function () {
         vscode.window.showInputBox({prompt: 'Name:'})
@@ -86,14 +109,75 @@ function activate(context) {
                     });
             });
     }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.changeDefaultRemote', function () {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool remote default " + val);
+        });
+    }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.fetch', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool fetch");        
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.fetchSpecific', function () {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool fetch " +val);
+        });       
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.retrieve', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool retrieve");                
     }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.retrieveSpecific', function () {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool retrieve " +val);
+        });       
+    }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.test', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool test");                
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.testSpecific', function () {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool test " +val);
+        });     
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.testClass', function (file) {
+        commandOutput.show();
+        var path; 
+        if(file == null)
+        {
+            var options2 = {
+                placeHolder: 'Filename',
+            };
+            vscode.window.showInputBox(options2).then((file) => {
+                execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + file);                
+            });
+        }else{
+            path = file.toString();
+            path = path.replace("file://", "");
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + path);                
+        }
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.testClassSpecific', function (file) {
+        commandOutput.show();
+        var path; 
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            if(file == null)
+            {
+                var options2 = {
+                    placeHolder: 'Filename',
+                };
+                vscode.window.showInputBox(options2).then((file) => {
+                    execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + file);                
+                });
+            }else{
+                path = file.toString();
+                path = path.replace("file://", "");
+                execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + path);                
+            }
+        }); 
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.packageAll', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool package -a");                
@@ -185,9 +269,28 @@ function activate(context) {
             execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + path +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c' );                                                         
         }    
     }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.checkClassSpecific', function (file) {
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            commandOutput.show();
+            var path; 
+            if(file == null)
+            {
+                var options2 = {
+                    placeHolder: 'Filename',
+                };
+                vscode.window.showInputBox(options2).then((file) => {
+                    execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + file +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c ' +val );                                                         
+                });
+            }else{
+                path = file.toString();
+                path = path.replace("file://", "");
+                execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + path +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c ' +val );                                                         
+            }    
+        });
+    }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.deploy', function (file) {
             commandOutput.show();
-
             var path; 
             if(file == null)
             {
@@ -202,7 +305,27 @@ function activate(context) {
                 path = path.replace("file://", "");
                 execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + path +' && force-dev-tool deploy -d config/deployments/tempChangeSet/' );                                                         
             }
-        }));    
+        }));   
+        context.subscriptions.push(vscode.commands.registerCommand('extension.deploySpecific', function (file) {
+            vscode.window.showQuickPick(getRemotes())
+            .then((val) => {
+                commandOutput.show();
+                var path; 
+                if(file == null)
+                {
+                    var options2 = {
+                        placeHolder: 'Filename',
+                    };
+                    vscode.window.showInputBox(options2).then((file) => {
+                        execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + file +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ ' + val );                                                         
+                    });
+                }else{
+                    path = file.toString();
+                    path = path.replace("file://", "");
+                    execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + path +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ ' + val);                                                         
+                }
+            });
+        })); 
 }
 exports.activate = activate;
 
