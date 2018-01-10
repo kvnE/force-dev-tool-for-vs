@@ -12,9 +12,11 @@
     ],
     "activationEvents": [
         "onCommand:extension.addDefaultRemote",
+        "onCommand:extension.changeDefaultRemote",
         "onCommand:extension.checkUncommitted",
         "onCommand:extension.checkClass",
         "onCommand:extension.login",
+        "onCommand:extension.loginSelectOrg",
         "onCommand:extension.fetch",
         "onCommand:extension.retrieve",
         "onCommand:extension.destructive",
@@ -37,6 +39,11 @@
             {
                 "command": "extension.checkClass",
                 "title": "Check Class",
+                "category": "force-dev-tool"
+            },
+            {
+                "command": "extension.changeDefaultRemote",
+                "title": "Change default Remote",
                 "category": "force-dev-tool"
             },
             {

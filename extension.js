@@ -1,5 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+var fs = require('fs');
 const vscode = require('vscode');
 var spawnCMD = require('spawn-command');
 var treeKill = require('tree-kill');
@@ -85,6 +86,28 @@ function activate(context) {
                             });
                     });
             });
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.changeDefaultRemote', function () {
+        // get remotes from config file
+        console.log(fs);
+        var configFile = vscode.workspace.rootPath + '/config/.orgs.json';
+        if (fs.existsSync(configFile)) {
+            var file = fs.readFileSync(configFile);
+            var data = JSON.parse(file.toString());
+            var options = [];
+            for (var key in data.remotes) {
+                options.push(key);
+            };
+            vscode.window.showQuickPick(options)
+                .then((val) => {
+                    execShellCMD(vscode.workspace.rootPath, "force-dev-tool remote default " + val);
+                });
+
+        }else
+        {
+            console.log('File does not exists.');
+        }
+        
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.fetch', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool fetch");        
