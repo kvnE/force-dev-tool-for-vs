@@ -27,7 +27,6 @@
         "onCommand:extension.testClass",
         "onCommand:extension.testClassSpecific",
         "onCommand:extension.destructive",
-        "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
         "onCommand:extension.deploy",
         "onCommand:extension.deploySpecific",
@@ -97,10 +96,6 @@
             {
                 "command": "extension.testClassSpecific",
                 "title": "force-dev-tool: Execute Test Class in specific Org"
-            },
-            {
-                "command": "extension.createDiffChangeset",
-                "title": "force-dev-tool: Create diff Changeset"
             },
             {
                 "command": "extension.destructive",
