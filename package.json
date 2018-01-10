@@ -16,7 +16,7 @@
         "onCommand:extension.checkUncommitted",
         "onCommand:extension.checkClass",
         "onCommand:extension.login",
-        "onCommand:extension.loginSelectOrg",
+        "onCommand:extension.loginSpecific",
         "onCommand:extension.fetch",
         "onCommand:extension.retrieve",
         "onCommand:extension.destructive",
@@ -32,9 +32,7 @@
         "commands": [
             {
                 "command": "extension.checkUncommitted",
-                "title": "Check uncommitted changes",
-                "description": "Checks all uncommitted changes agains your Org.",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Check uncommitted changes"
             },
             {
                 "command": "extension.checkClass",
@@ -42,43 +40,35 @@
             },
             {
                 "command": "extension.changeDefaultRemote",
-                "title": "Change default Remote",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Change default Remote"
             },
             {
                 "command": "extension.login",
-                "title": "Login",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Login"
             },
             {
-                "command": "extension.loginSelectOrg",
-                "title": "Login to specific Org",
-                "category": "force-dev-tool"
+                "command": "extension.loginSpecific",
+                "title": "force-dev-tool: Login to specific Org"
             },
             {
                 "command": "extension.addDefaultRemote",
-                "title": "Add default Remote",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Add default Remote"
             },
             {
                 "command": "extension.fetch",
-                "title": "Fetch",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Fetch"
             },
             {
                 "command": "extension.retrieve",
-                "title": "Retrieve",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Retrieve"
             },
             {
                 "command": "extension.test",
-                "title": "Test",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Test"
             },
             {
                 "command": "extension.createDiffChangeset",
-                "title": "Create diff Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create diff Changeset"
             },
             {
                 "command": "extension.destructive",
@@ -94,8 +84,7 @@
             },
             {
                 "command": "extension.packageAll",
-                "title": "Package All",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Package All"
             },
             {
                 "command": "extension.exeSOQL",
