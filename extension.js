@@ -1,4 +1,4 @@
-import { request } from 'https';
+//import { request } from 'https';
 
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
@@ -153,12 +153,12 @@ function activate(context) {
                 placeHolder: 'Filename',
             };
             vscode.window.showInputBox(options2).then((file) => {
-                execShellCMD(vscode.workspace.rootPath, cb.buildTestClassCommand(file));                
+                execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(file));                
             });
         }else{
             path = file.toString();
             path = path.replace("file://", "");
-            execShellCMD(vscode.workspace.rootPath, cb.uildTestClassCommand(path));                     
+            execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(path));                     
         }
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.testClassSpecific', function (file) {
@@ -172,12 +172,12 @@ function activate(context) {
                     placeHolder: 'Filename',
                 };
                 vscode.window.showInputBox(options2).then((file) => {
-                    execShellCMD(vscode.workspace.rootPath, cb.buildTestClassCommand(file, val));                     
+                    execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(file, val));                     
                 });
             }else{
                 path = file.toString();
                 path = path.replace("file://", "");
-                execShellCMD(vscode.workspace.rootPath, cb.buildTestClassCommand(path, val));               
+                execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(path, val));               
             }
         }); 
     }));
@@ -197,12 +197,12 @@ function activate(context) {
                     placeHolder: 'Filename',
                 };
                 vscode.window.showInputBox(options2).then((file) => {
-                    execShellCMD(vscode.workspace.rootPath, cb.buildCreateDesChangeSetCommand(name,file));                                    
+                    execShellCMD(vscode.workspace.rootPath, cb.buildCreateDesChangeSet(name,file));                                    
                 });
             }else{
                 path = file.toString();
                 path = path.replace("file://", "");
-                execShellCMD(vscode.workspace.rootPath, cb.buildCreateDesChangeSetCommand(name,path));                              
+                execShellCMD(vscode.workspace.rootPath, cb.buildCreateDesChangeSet(name,path));                              
             }
         });
     }));
@@ -221,12 +221,12 @@ function activate(context) {
                     placeHolder: 'Filename',
                 };
                 vscode.window.showInputBox(options2).then((file) => {
-                    execShellCMD(vscode.workspace.rootPath, cb.buildCreateChangeSetCommand(name,file));                                    
+                    execShellCMD(vscode.workspace.rootPath, cb.buildCreateChangeSet(name,file));                                    
                 });
             }else{
                 path = file.toString();
                 path = path.replace("file://", "");
-                execShellCMD(vscode.workspace.rootPath, cb.buildCreateChangeSetCommand(name,path));                
+                execShellCMD(vscode.workspace.rootPath, cb.buildCreateChangeSet(name,path));                
             }
         });
     }));
@@ -254,12 +254,12 @@ function activate(context) {
                 placeHolder: 'Filename',
             };
             vscode.window.showInputBox(options2).then((file) => {
-                execShellCMD(vscode.workspace.rootPath, cb.buildCheckClassCommand(file));                                                         
+                execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(file));                                                         
             });
         }else{
             path = file.toString();
             path = path.replace("file://", "");
-            execShellCMD(vscode.workspace.rootPath, cb.buildCheckClassCommand(path));                                                         
+            execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(path));                                                         
         }    
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.checkClassSpecific', function (file) {
@@ -273,12 +273,12 @@ function activate(context) {
                     placeHolder: 'Filename',
                 };
                 vscode.window.showInputBox(options2).then((file) => {
-                    execShellCMD(vscode.workspace.rootPath, cb.buildCheckClassCommand(file,val));                                                         
+                    execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(file,val));                                                         
                 });
             }else{
                 path = file.toString();
                 path = path.replace("file://", "");
-                execShellCMD(vscode.workspace.rootPath, cb.buildCheckClassCommand(path,val));                                                             
+                execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(path,val));                                                             
             }    
         });
     }));
@@ -290,12 +290,12 @@ function activate(context) {
                 placeHolder: 'Filename',
             };
             vscode.window.showInputBox(options2).then((file) => {
-                execShellCMD(vscode.workspace.rootPath, cb.buildDeployCommand(file));
+                execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(file));
             });
         }else{
             path = file.toString();
             path = path.replace("file://", "");
-            execShellCMD(vscode.workspace.rootPath, cb.buildDeployCommand(path));
+            execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(path));
         }
     }));   
     context.subscriptions.push(vscode.commands.registerCommand('extension.deploySpecific', function (file) {
@@ -309,12 +309,12 @@ function activate(context) {
                     placeHolder: 'Filename',
                 };
                 vscode.window.showInputBox(options2).then((file) => {
-                    execShellCMD(vscode.workspace.rootPath, cb.buildDeployCommand(file, val));                                                         
+                    execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(file, val));                                                         
                 });
             }else{
                 path = file.toString();
                 path = path.replace("file://", "");
-                execShellCMD(vscode.workspace.rootPath, cb.buildDeployCommand(path, val));                                                              
+                execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(path, val));                                                              
             }
         });
     })); 

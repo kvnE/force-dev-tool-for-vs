@@ -1,3 +1,7 @@
+exports.buildAddRemote = function(name,username,password,url) {
+  return "force-dev-tool remote add "+name+" "+username+" "+password+" -u "+url+" --default";
+};
+
 exports.buildLogin = function(remote="") {
     return "force-dev-tool login " + remote;
 };
