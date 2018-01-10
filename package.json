@@ -24,8 +24,8 @@
         "onCommand:extension.retrieveSpecific",
         "onCommand:extension.test",
         "onCommand:extension.testSpecific",
-        "onCommand:extension.testClass",  
-        "onCommand:extension.testClassSpecific",                    
+        "onCommand:extension.testClass",
+        "onCommand:extension.testClassSpecific",
         "onCommand:extension.destructive",
         "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
@@ -110,11 +110,11 @@
                 "command": "extension.changeset",
                 "title": "force-dev-tool: Create Changeset"
             },
-            {  
+            {
                 "command": "extension.deploy",
                 "title": "force-dev-tool: Deploy"
             },
-            {  
+            {
                 "command": "extension.deploySpecific",
                 "title": "force-dev-tool: Deploy to specific Org"
             },
@@ -137,14 +137,15 @@
         ],
         "menus": {
             "commandPalette": [
-            {
-                "when": "resourceLangId == apex && editorHasSelection",
-                "command": "extension.exeSOQL"
-            },
-            {
-                "when": "resourceLangId == apex && editorHasSelection",
-                "command": "extension.exeAnonymous"
-            }],
+                {
+                    "when": "resourceLangId == apex && editorHasSelection",
+                    "command": "extension.exeSOQL"
+                },
+                {
+                    "when": "resourceLangId == apex && editorHasSelection",
+                    "command": "extension.exeAnonymous"
+                }
+            ],
             "explorer/context": [
                 {
                     "when": "resourceLangId == apex",
@@ -191,13 +192,14 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.6.1",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "typescript": "^2.6.2",
+        "vscode": "^1.1.10",
+        "eslint": "^4.15.0",
+        "@types/node": "^9.3.0",
+        "@types/mocha": "^2.2.46"
     },
     "dependencies": {
+        "force-dev-tool": "^1.1.0",
         "spawn-command": "0.0.2-1",
         "tree-kill": "^1.2.0"
     }
