@@ -1,41 +1,33 @@
-# force-dev-tool-for-vs README
+# force-dev-tool-for-vs
 
-This is the README for your extension "force-dev-tool-for-vs". After writing up a brief description, we recommend including the following sections.
+This is a VS Code extension to enhance the usablity of the force-dev-tool inside VS Code.
 
-## Features
-Create point-and-click change sets
-Deploy classes easily
+To deploy or check your code the extesion creates an temporary Change Set which will be deployed / checked automatically.
 
 ## Requirements
 
-Because this is a extension of the force-dev-tool from amtrack you need to install this first.
-https://github.com/amtrack/force-dev-tool
+You have to install the force-dev-tool first.
 
-## Known Issues
+This extension maybe works only on unix based systems
+## Features
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Apex Class Context Menu:
+- Create new Change Set 
+- Create new destrutive Change Set
+- Deploy Class
+- Check Class
 
-## Release Notes
+### Editor Context Menu
+- Execute Selected SOQL
+- Execute Selected APEX anonymous
 
-Users appreciate release notes as you update your extension.
+### Commands:
+- Add Default Remote
+- Login
+- Fetch
+- Package All
+- Retrieve
+- Create Change Set
+- Create destrcuctive Change Set
+- Deploy
 
-### 1.0.0
-
-Initial release of force-dev-tool-for-vs
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

@@ -71,6 +71,21 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.login', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool login");
     }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.addDefaultRemote', function () {
+        vscode.window.showInputBox({prompt: 'Name:'})
+            .then((name) => {
+                vscode.window.showInputBox({prompt: 'Username:'})
+                    .then((username) => {
+                        vscode.window.showInputBox({prompt: 'Password:'})
+                            .then((password) => {
+                                vscode.window.showInputBox({prompt: 'URL:', value: "https://test.salesforce.com"})
+                                    .then((url) => {
+                                        execShellCMD(vscode.workspace.rootPath, "force-dev-tool remote add "+name+" "+username+" "+password+" -u "+url+" --default");                        
+                                    });
+                            });
+                    });
+            });
+    }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.fetch', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool fetch");        
     }));
@@ -138,8 +153,37 @@ function activate(context) {
             execShellCMD(vscode.workspace.rootPath, "git diff | force-dev-tool changeset create -f " + name);                
         });
     }));
-    context.subscriptions.push(vscode.commands.registerCommand('extension.check', function () {
-        execShellCMD(vscode.workspace.rootPath, "git diff | force-dev-tool changeset create tempChangeSet -f ; force-dev-tool deploy -d config/deployments/tempChangeSet/ -c");                
+    context.subscriptions.push(vscode.commands.registerCommand('extension.checkUncommitted', function () {
+        execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f $(git diff --name-only | xargs printf "%04s ") && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c');                
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.exeSOQL', function (file) {
+        var editor = vscode.window.activeTextEditor;
+        var selection = editor.selection;
+        var selectedText = editor.document.getText(selection);
+        execShellCMD(vscode.workspace.rootPath, 'force-dev-tool query "'+selectedText+'"');                        
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.exeAnonymous', function (text) {
+        var editor = vscode.window.activeTextEditor;
+        var selection = editor.selection;
+        var selectedText = editor.document.getText(selection);
+        execShellCMD(vscode.workspace.rootPath, 'echo "'+selectedText+'" | force-dev-tool execute');         
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.checkClass', function (file) {
+        commandOutput.show();
+        var path; 
+        if(file == null)
+        {
+            var options2 = {
+                placeHolder: 'Filename',
+            };
+            vscode.window.showInputBox(options2).then((file) => {
+                execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + file +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c' );                                                         
+            });
+        }else{
+            path = file.toString();
+            path = path.replace("file://", "");
+            execShellCMD(vscode.workspace.rootPath, 'echo "" | force-dev-tool changeset create tempChangeSet -f ' + path +' && force-dev-tool deploy -d config/deployments/tempChangeSet/ -c' );                                                         
+        }    
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.deploy', function (file) {
             commandOutput.show();

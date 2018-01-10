@@ -2,17 +2,18 @@
     "name": "force-dev-tool-for-vs",
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "publisher": "kev-force",
     "engines": {
         "vscode": "^1.18.0"
     },
     "categories": [
-        "Other"
+        "force-dev-tool"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello",
-        "onCommand:extension.check",
+        "onCommand:extension.addDefaultRemote",
+        "onCommand:extension.checkUncommitted",
+        "onCommand:extension.checkClass",
         "onCommand:extension.login",
         "onCommand:extension.fetch",
         "onCommand:extension.retrieve",
@@ -20,57 +21,108 @@
         "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
         "onCommand:extension.deploy",
+        "onCommand:extension.exeSOQL",
+        "onCommand:extension.exeAnonymous",
         "onCommand:extension.packageAll"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.check",
-                "title": "force-dev-tool: Check"
+                "command": "extension.checkUncommitted",
+                "title": "Check uncommitted changes",
+                "description": "Checks all uncommitted changes agains your Org.",
+                "category": "force-dev-tool"
+            },
+            {
+                "command": "extension.checkClass",
+                "title": "Check Class",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.login",
-                "title": "force-dev-tool: Login"
+                "title": "Login",
+                "category": "force-dev-tool"
+            },
+            {
+                "command": "extension.addDefaultRemote",
+                "title": "Add default Remote",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.fetch",
-                "title": "force-dev-tool: Fetch"
+                "title": "Fetch",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.retrieve",
-                "title": "force-dev-tool: Retrieve"
+                "title": "Retrieve",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.test",
-                "title": "force-dev-tool: Test"
+                "title": "Test",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.createDiffChangeset",
-                "title": "force-dev-tool: Create diff Changeset"
+                "title": "Create diff Changeset",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.destructive",
-                "title": "force-dev-tool: Create destructive Changeset"
+                "title": "Create destructive Changeset",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.changeset",
-                "title": "force-dev-tool: Create Changeset"
+                "title": "Create Changeset",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.deploy",
-                "title": "force-dev-tool: Deploy"
+                "title": "Deploy",
+                "category": "force-dev-tool"
             },
             {
                 "command": "extension.packageAll",
-                "title": "force-dev-tool: Package All"
+                "title": "Package All",
+                "category": "force-dev-tool"
+            },
+            {
+                "command": "extension.exeSOQL",
+                "title": "Execute SOQL",
+                "category": "force-dev-tool"
+            },
+            {
+                "command": "extension.exeAnonymous",
+                "title": "Execute anonymous APEX",
+                "category": "force-dev-tool",
+                "context": {
+                    "where": "editor/context",
+                    "when": "resourceLangId == apex"
+                }
             }
         ],
         "menus": {
+            "commandPalette": [
+            {
+                "when": "resourceLangId == apex && editorHasSelection",
+                "command": "extension.exeSOQL"
+            },
+            {
+                "when": "resourceLangId == apex && editorHasSelection",
+                "command": "extension.exeAnonymous"
+            }],
             "explorer/context": [
                 {
                     "when": "resourceLangId == apex",
                     "command": "extension.deploy",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.checkClass",
                     "group": "navigation"
                 },
                 {
@@ -81,6 +133,18 @@
                 {
                     "when": "resourceLangId == apex",
                     "command": "extension.destructive",
+                    "group": "navigation"
+                }
+            ],
+            "editor/context": [
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.exeSOQL",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.exeAnonymous",
                     "group": "navigation"
                 }
             ]
