@@ -142,6 +142,43 @@ function activate(context) {
             execShellCMD(vscode.workspace.rootPath, "force-dev-tool test " +val);
         });     
     }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.testClass', function (file) {
+        commandOutput.show();
+        var path; 
+        if(file == null)
+        {
+            var options2 = {
+                placeHolder: 'Filename',
+            };
+            vscode.window.showInputBox(options2).then((file) => {
+                execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + file);                
+            });
+        }else{
+            path = file.toString();
+            path = path.replace("file://", "");
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + path);                
+        }
+    }));
+    context.subscriptions.push(vscode.commands.registerCommand('extension.testClassSpecific', function (file) {
+        commandOutput.show();
+        var path; 
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            if(file == null)
+            {
+                var options2 = {
+                    placeHolder: 'Filename',
+                };
+                vscode.window.showInputBox(options2).then((file) => {
+                    execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + file);                
+                });
+            }else{
+                path = file.toString();
+                path = path.replace("file://", "");
+                execShellCMD(vscode.workspace.rootPath, "force-dev-tool test  --classNames " + path);                
+            }
+        }); 
+    }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.packageAll', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool package -a");                
     }));

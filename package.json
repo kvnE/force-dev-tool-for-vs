@@ -23,7 +23,9 @@
         "onCommand:extension.retrieve",
         "onCommand:extension.retrieveSpecific",
         "onCommand:extension.test",
-        "onCommand:extension.testSpecific",        
+        "onCommand:extension.testSpecific",
+        "onCommand:extension.testClass",  
+        "onCommand:extension.testClassSpecific",                    
         "onCommand:extension.destructive",
         "onCommand:extension.createDiffChangeset",
         "onCommand:extension.changeset",
@@ -87,6 +89,14 @@
             {
                 "command": "extension.testSpecific",
                 "title": "force-dev-tool: Test specific Org"
+            },
+            {
+                "command": "extension.testClass",
+                "title": "force-dev-tool: Execute Test Class"
+            },
+            {
+                "command": "extension.testClassSpecific",
+                "title": "force-dev-tool: Execute Test Class in specific Org"
             },
             {
                 "command": "extension.createDiffChangeset",
@@ -154,6 +164,11 @@
                 {
                     "when": "resourceLangId == apex",
                     "command": "extension.destructive",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceLangId == apex",
+                    "command": "extension.testClass",
                     "group": "navigation"
                 }
             ],
