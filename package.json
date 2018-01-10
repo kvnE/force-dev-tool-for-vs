@@ -45,6 +45,11 @@
                 "category": "force-dev-tool"
             },
             {
+                "command": "extension.loginSelectOrg",
+                "title": "Login to specific Org",
+                "category": "force-dev-tool"
+            },
+            {
                 "command": "extension.addDefaultRemote",
                 "title": "Add default Remote",
                 "category": "force-dev-tool"
