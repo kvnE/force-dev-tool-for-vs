@@ -38,8 +38,7 @@
             },
             {
                 "command": "extension.checkClass",
-                "title": "Check Class",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Check Class"
             },
             {
                 "command": "extension.changeDefaultRemote",
@@ -83,18 +82,15 @@
             },
             {
                 "command": "extension.destructive",
-                "title": "Create destructive Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create destructive Changeset"
             },
             {
                 "command": "extension.changeset",
-                "title": "force-dev-tool: Create Changeset",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Create Changeset"
             },
             {  
                 "command": "extension.deploy",
-                "title": "Deploy",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Deploy"
             },
             {
                 "command": "extension.packageAll",
@@ -103,13 +99,11 @@
             },
             {
                 "command": "extension.exeSOQL",
-                "title": "Execute SOQL",
-                "category": "force-dev-tool"
+                "title": "force-dev-tool: Execute SOQL"
             },
             {
                 "command": "extension.exeAnonymous",
-                "title": "Execute anonymous APEX",
-                "category": "force-dev-tool",
+                "title": "force-dev-tool: Execute anonymous APEX",
                 "context": {
                     "where": "editor/context",
                     "when": "resourceLangId == apex"
