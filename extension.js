@@ -65,6 +65,22 @@ function execShellCMD(cwd, cmd) {
         exec(cmd, cwd);
     }
 }
+function getRemotes(){
+    var configFile = vscode.workspace.rootPath + '/config/.orgs.json';
+    if (fs.existsSync(configFile)) {
+        var file = fs.readFileSync(configFile);
+        var data = JSON.parse(file.toString());
+        var options = [];
+        for (var key in data.remotes) {
+            options.push(key);
+        };
+        return options;
+    }else
+    {
+        console.log('File does not exists.');
+        return null;
+    }
+}
 function activate(context) {
     console.log('Congratulations, your extension "force-dev-tool-for-vs" is now active!');
     commandOutput = vscode.window.createOutputChannel('force-dev-tool');
@@ -88,26 +104,10 @@ function activate(context) {
             });
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.changeDefaultRemote', function () {
-        // get remotes from config file
-        console.log(fs);
-        var configFile = vscode.workspace.rootPath + '/config/.orgs.json';
-        if (fs.existsSync(configFile)) {
-            var file = fs.readFileSync(configFile);
-            var data = JSON.parse(file.toString());
-            var options = [];
-            for (var key in data.remotes) {
-                options.push(key);
-            };
-            vscode.window.showQuickPick(options)
-                .then((val) => {
-                    execShellCMD(vscode.workspace.rootPath, "force-dev-tool remote default " + val);
-                });
-
-        }else
-        {
-            console.log('File does not exists.');
-        }
-        
+        vscode.window.showQuickPick(getRemotes())
+        .then((val) => {
+            execShellCMD(vscode.workspace.rootPath, "force-dev-tool remote default " + val);
+        });
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.fetch', function () {
         execShellCMD(vscode.workspace.rootPath, "force-dev-tool fetch");        
