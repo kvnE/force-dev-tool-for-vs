@@ -1,5 +1,3 @@
-//import { request } from 'https';
-
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var fs = require('fs');
@@ -7,6 +5,8 @@ const vscode = require('vscode');
 var spawnCMD = require('spawn-command');
 var treeKill = require('tree-kill');
 var cb = require('./bin/CommandBuilder');
+var sh = require('./bin/shell');
+var helper = require('./bin/helper');
 var process = null;
 var commandOutput = null;
 
@@ -84,11 +84,13 @@ function getRemotes(){
         return null;
     }
 }
+
 function activate(context) {
+    console.log('Congratulations, your extension "force-dev-tool-for-vs" is now active!');    
     commandOutput = vscode.window.createOutputChannel('force-dev-tool');
     
     context.subscriptions.push(vscode.commands.registerCommand('extension.login', function () {
-        execShellCMD(vscode.workspace.rootPath, cb.buildLogin());
+        sh.execShellCMD(vscode.workspace.rootPath, cb.buildLogin());
     }));
     context.subscriptions.push(vscode.commands.registerCommand('extension.loginSpecific', function () {
         vscode.window.showQuickPick(getRemotes())
@@ -149,8 +151,10 @@ function activate(context) {
         var path; 
         if(file == null)
         {
+            var currentFile = vscode.window.activeTextEditor.document.uri;
             var options2 = {
                 placeHolder: 'Filename',
+                value : currentFile
             };
             vscode.window.showInputBox(options2).then((file) => {
                 execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(file));                
@@ -168,8 +172,10 @@ function activate(context) {
         .then((val) => {
             if(file == null)
             {
+                var currentFile = vscode.window.activeTextEditor.document.uri;
                 var options2 = {
                     placeHolder: 'Filename',
+                    value : currentFile
                 };
                 vscode.window.showInputBox(options2).then((file) => {
                     execShellCMD(vscode.workspace.rootPath, cb.buildTestClass(file, val));                     
@@ -250,8 +256,10 @@ function activate(context) {
         var path; 
         if(file == null)
         {
+            var currentFile = vscode.window.activeTextEditor.document.uri;
             var options2 = {
                 placeHolder: 'Filename',
+                value : currentFile
             };
             vscode.window.showInputBox(options2).then((file) => {
                 execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(file));                                                         
@@ -269,8 +277,10 @@ function activate(context) {
             var path; 
             if(file == null)
             {
+                var currentFile = vscode.window.activeTextEditor.document.uri;
                 var options2 = {
                     placeHolder: 'Filename',
+                    value : currentFile
                 };
                 vscode.window.showInputBox(options2).then((file) => {
                     execShellCMD(vscode.workspace.rootPath, cb.buildCheckClass(file,val));                                                         
@@ -286,8 +296,10 @@ function activate(context) {
         var path; 
         if(file == null)
         {
+            var currentFile = vscode.window.activeTextEditor.document.uri;
             var options2 = {
                 placeHolder: 'Filename',
+                value : currentFile
             };
             vscode.window.showInputBox(options2).then((file) => {
                 execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(file));
@@ -301,12 +313,13 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('extension.deploySpecific', function (file) {
         vscode.window.showQuickPick(getRemotes())
         .then((val) => {
-            commandOutput.show();
             var path; 
             if(file == null)
             {
+                var currentFile = vscode.window.activeTextEditor.document.uri;
                 var options2 = {
                     placeHolder: 'Filename',
+                    value : currentFile
                 };
                 vscode.window.showInputBox(options2).then((file) => {
                     execShellCMD(vscode.workspace.rootPath, cb.buildDeploy(file, val));                                                         
