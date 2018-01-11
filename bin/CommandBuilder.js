@@ -35,6 +35,9 @@ exports.buildAnonymousApex = function(code) {
 };
 
 exports.buildTestClass = function(file, remote=""){
+  file = file.toString();
+  file = file.split('/');
+  file = file[file.length-1].replace('.cls', '');
   return "force-dev-tool test  --classNames " + file + " " + remote; 
 }
 
