@@ -2,7 +2,7 @@
     "name": "force-dev-tool-for-vs",
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "kev-force",
     "engines": {
         "vscode": "^1.18.0"
