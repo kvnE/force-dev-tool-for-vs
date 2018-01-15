@@ -59,8 +59,8 @@ Example: src/classes/foo.cls
 Most of the command have a perform in specific org option. This options let's choose you your org where the command will be executed.
 
 ## Issues / Feature requests
-You can submit your issues and feature requests on the GitHub [issues page][issues].
+You can submit your issues and feature requests on the GitHub [issues](https://github.com/kvnE/force-dev-tool-for-vs/issues).
 
 ## Credits
-Command execution based on [bbenoist/vscode-shell]: https://github.com/bbenoist/vscode-shell
-force-dev-tool: [amtrack/force-dev-tool]: https://github.com/amtrack/force-dev-tool
+Command execution based on [bbenoist/vscode-shell](https://github.com/bbenoist/vscode-shell)
+force-dev-tool: [amtrack/force-dev-tool](https://github.com/amtrack/force-dev-tool)
