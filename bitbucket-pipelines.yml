@@ -15,4 +15,4 @@ pipelines:
         - step:
             script:
                 - echo "Push master branche to git hub is awesome!"
-                - git push -u https://github.com/kvnE/force-dev-tool-for-vs.git            
+                - git push https://$githubtoken@github.com/kvnE/force-dev-tool-for-vs.git master         
