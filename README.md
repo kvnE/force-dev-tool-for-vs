@@ -1,8 +1,6 @@
 # force-dev-tool-for-vs
 
-This is a VS Code extension to enhance the usablity of the force-dev-tool inside VS Code.
-It helps you getting more productive by not having to leave VS Code.
-To deploy or check your code the extesion creates an temporary Change Set which will be deployed / checked automatically.
+This is a VS Code extension to enhance the usability of the force-dev-tool inside VS Code. It helps you getting more productive by not having to leave VS Code. To deploy or check your code the extension creates a temporary Change Set which will be deployed/checked automatically.
 
 ## Installation
 You can install this application by using the [Marketplace](https://marketplace.visualstudio.com/items?itemName=kvnE.force-dev-tool-for-vs).

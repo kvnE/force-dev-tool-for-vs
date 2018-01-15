@@ -2,13 +2,13 @@
     "name": "force-dev-tool-for-vs",
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "publisher": "kvnE",
     "engines": {
         "vscode": "^1.18.0"
     },
     "categories": [
-       "Other"
+        "Other"
     ],
     "activationEvents": [
         "onCommand:extension.addDefaultRemote",
