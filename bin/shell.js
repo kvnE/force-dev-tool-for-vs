@@ -29,9 +29,9 @@ exports.exec = function(cmd, cwd) {
     if (!cmd) { return; }
     commandOutput.clear();
     commandOutput.show();
-    commandOutput.appendLine(`> Running command \`${cmd}\`...`)
+    commandOutput.appendLine(`> ${cmd}`)
     this.run(cmd, cwd).then(() => {
-      commandOutput.appendLine(`> Command ran successfully.`);
+      commandOutput.appendLine(`> Successful.`);
     }).catch((reason) => {
       commandOutput.appendLine(`> ERROR: ${reason}`);
       vscode.window.showErrorMessage(reason, 'Show Output')
