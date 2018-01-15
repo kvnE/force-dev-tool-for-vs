@@ -5,6 +5,9 @@ It helps you getting more productive by not having to leave VS Code.
 To deploy or check your code the extesion creates an temporary Change Set which will be deployed / checked automatically.
 
 ## Requirements
+Currently this exetions is not available in the marketplace. To install the extions please download the .vsix file in the vsix directory or build the extension by yourself using `vsce package`.
+
+## Requirements
 
 - This extension works only on unix based systems
 
