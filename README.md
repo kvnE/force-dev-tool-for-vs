@@ -63,4 +63,5 @@ You can submit your issues and feature requests on the GitHub [issues](https://g
 
 ## Credits
 Command execution based on [bbenoist/vscode-shell](https://github.com/bbenoist/vscode-shell)
+and
 force-dev-tool: [amtrack/force-dev-tool](https://github.com/amtrack/force-dev-tool)
