@@ -119,7 +119,11 @@
             },
             {
                 "command": "extension.exeSOQL",
-                "title": "force-dev-tool: Execute SOQL"
+                "title": "force-dev-tool: Execute SOQL",
+                "context": {
+                    "where": "editor/context",
+                    "when": "resourceLangId == apex"
+                }
             },
             {
                 "command": "extension.exeAnonymous",

@@ -46,7 +46,7 @@ exports.buildCreateDesChangeSet = function(name, file){
 }
 
 exports.buildCreateChangeSet = function(name, file){
-  return 'echo "" | force-dev-tool changeset create ' + name + ' -f ' + file;
+  return 'echo "" | force-dev-tool changeset create ' + name + ' -f "' + file +'"';
 }
 
 exports.buildCheckClass = function(file, remote=""){
