@@ -15,3 +15,7 @@ pipelines:
         - step:
             script:
                 - echo "Master is awesome!"
+    Feature:
+        - step:
+            script:
+                - echo "Feature is awesome!"                
