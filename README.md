@@ -6,9 +6,8 @@ To deploy or check your code the extesion creates an temporary Change Set which 
 
 ## Requirements
 
-You have to install the force-dev-tool first.
-
 This extension maybe works only on unix based systems
+
 ## Features
 
 ### Apex Class Context Menu:
