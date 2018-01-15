@@ -42,15 +42,19 @@ Executes all test classes.
 - `Execute Test Class`
 Type in the name of your test class which should be executed.
 - `Create Change Set`
-Type in the filename of your class.
+Type in the filename (including the path) of your class. 
+Example: src/classes/foo.cls
 - `Create destrcuctive Change Set`
-Type in the filename of your class.
+Type in the filename (including the path) of your class. 
+Example: src/classes/foo.cls
 - `Deploy`
-Type in the filename of your class.
+Type in the filename (including the path) of your class. 
+Example: src/classes/foo.cls
 - `Check uncommitted changes`
 This will check all your changes since the last commit to your org.
 - `Check Class`
-Type in the filename of your class.
+Type in the filename (including the path) of your class. 
+Example: src/classes/foo.cls
 
 Most of the command have a perform in specific org option. This options let's choose you your org where the command will be executed.
 
