@@ -4,8 +4,8 @@ This is a VS Code extension to enhance the usablity of the force-dev-tool inside
 It helps you getting more productive by not having to leave VS Code.
 To deploy or check your code the extesion creates an temporary Change Set which will be deployed / checked automatically.
 
-## Requirements
-Currently this exetions is not available in the marketplace. To install the extions please download the .vsix file in the vsix directory or build the extension by yourself using `vsce package`.
+## Installation
+You can install this application by using the [Marketplace](https://marketplace.visualstudio.com/items?itemName=kvnE.force-dev-tool-for-vs).
 
 ## Requirements
 

@@ -3,12 +3,12 @@
     "displayName": "force-dev-tool for VS",
     "description": "Extension for force-dev-tool",
     "version": "0.1.4",
-    "publisher": "kev-force",
+    "publisher": "kvnE",
     "engines": {
         "vscode": "^1.18.0"
     },
     "categories": [
-        "force-dev-tool"
+       "Other"
     ],
     "activationEvents": [
         "onCommand:extension.addDefaultRemote",
